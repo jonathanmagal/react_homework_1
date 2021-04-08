@@ -1,0 +1,13 @@
+
+.login_form #name_error,
+.login_form #age_error,
+.login_form #tea_error,
+.login_form #browser_error { 
+    color: red;
+}
+button {
+    margin: 30px 2px;
+    border-color: gray;
+    color: green;
+    border-radius: 30px;
+}
