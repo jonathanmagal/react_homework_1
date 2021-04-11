@@ -55,6 +55,10 @@ form.addEventListener('submit', (e) => {
         browser_error.innerText = ""
     }
 
+    if (browser.value == 'Safari' && userage.value > 16 && coffeb.checked && username.value.length > 2 && username.value !== 'yogev') {
+        document.body.innerHTML = ("SUCCESS")
+    }
+
 
 })
 
