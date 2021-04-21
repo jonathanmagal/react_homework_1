@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- <-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: rgb(247, 237, 220);
+            text-align: center;
+        }
+
+        .componentaOne {
+            background: rgb(163, 163, 163);
+            border: rgb(146, 180, 243);
+        }
+
+        .indicator1 {
+            background-color: burlywood;
+            border: blueviolet;
+            border-width: 3px;
+        }
+
+        .indicator2 {
+            background-color: rgb(177, 177, 236);
+            border: rgb(233, 139, 139);
+            border-width: 3px;
+
+        }
+    </style>
+
+    <div id="root"></div>
+    <script type="text/babel">
+        const App = () => {
+            const [totalCount, setTotalCount] = React.useState(0)
+            const ClickedPlus = () => {
+                setTotalCount(totalCount + 1);
+            };
+
+            const ClickedMinus = () => {
+                setTotalCount(totalCount - 1);
+            };
+
+            return (
+                <div className="componentaOne">
+                    <h1>total clicks: {totalCount}</h1>
+                    <Counter clickedPlus={ClickedPlus} clickedMinus={ClickedMinus} title="first" />
+                    <Counter clickedPlus={ClickedPlus} clickedMinus={ClickedMinus} title="first" />
+                    <Counter clickedPlus={ClickedPlus} clickedMinus={ClickedMinus} title="first" />
+                    <Counter clickedPlus={ClickedPlus} clickedMinus={ClickedMinus} title="first" />
+                </div>
+            );
+        };
+
+        const Counter = (props) => {
+            const { title, clickedPlus, clickedMinus } = props;
+            const [count, setCount] = React.useState(0)
+
+            const increment = () => {
+                setCount(count + 1);
+                clickedPlus();
+            };
+
+            const decrement = () => {
+                setCount(count - 1);
+                clickedMinus();
+            };
+
+            return (
+                <div className={count >= 5 ? 'indicator1' : 'indicator2'}>
+                    <h1>{title}</h1>
+                    <button onClick={increment}>increment</button>
+                    <button onClick={decrement}>decrement</button>
+                    <div>Pressed {count} times</div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+</body>
+
+</html>
